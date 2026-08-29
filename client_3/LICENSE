@@ -1,0 +1,53 @@
+MIT License
+
+Copyright (c) 2025 Heart Disease Prediction Project Team
+- Babin Bid (Developer)
+- Rohit Kumar Adak (Lead Developer)
+- Ritika Pramanick (Developer)
+- Liza Ghosh (Developer)
+
+Under the guidance of Dr. Debdutta Pal
+Computer Science and Engineering Department, Adamas University
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this project and associated documentation files, to deal
+in the Project without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Project, and to permit persons to whom the Project is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Project.
+
+THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+PROJECT.
+
+---
+
+PROJECT INFORMATION
+===================
+
+Project Name: Heart Disease Prediction Using TensorFlow
+Project Duration: November 3, 2025 - November 11, 2025
+Department: Computer Science and Engineering (CSE)
+
+DISCLAIMER
+==========
+
+This project is developed for educational purposes as part of a university 
+coursework. The machine learning model is trained on a specific dataset and 
+should not be used for actual medical diagnosis or treatment decisions without 
+proper validation and regulatory approval.
+
+The prediction model provided in this project is experimental and should be 
+used with caution. Always consult with qualified medical professionals for 
+actual health concerns.
+
+---
+
+For more information, see the README.md file included in this project.
