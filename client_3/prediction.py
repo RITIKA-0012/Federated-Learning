@@ -21,15 +21,21 @@ scaler_path = os.path.join(output_dir, "xgboost_heart_scaler.pkl")
 meta_path = os.path.join(output_dir, "xgboost_metadata.pkl")
 confidence_plot_path = os.path.join(output_dir, "xgboost_prediction_confidence.png")
 
-IMPORTANT_FEATURES = [
-    'chest pain',
-    'Maximum Heart Rate',
-    'Major Blood Vessels',
-    'ST Depression',
-    'Thalassemia Result',
-    'age',
-    'Cholesterol Level',
-    'Resting Blood Pressure'
+# 13 clinical features for heart_disease_3.csv
+FEATURES = [
+    'Age',
+    'Sex',
+    'Chest pain type',
+    'BP',
+    'Cholesterol',
+    'FBS over 120',
+    'EKG results',
+    'Max HR',
+    'Exercise angina',
+    'ST depression',
+    'Slope of ST',
+    'Number of vessels fluro',
+    'Thallium'
 ]
 
 
@@ -52,7 +58,7 @@ def load_artifacts():
 def predict_sample(input_dict):
     """Programmatic prediction helper function for a given dictionary of patient features."""
     model, scaler, meta = load_artifacts()
-    features = meta.get("features", IMPORTANT_FEATURES)
+    features = meta.get("features", FEATURES)
     defaults = meta.get("defaults", {})
 
     row = {}
@@ -77,25 +83,30 @@ def predict_sample(input_dict):
 def live_prediction():
     """Interactive CLI disease prediction using the trained XGBoost model."""
     model, scaler, meta = load_artifacts()
-    features = meta.get("features", IMPORTANT_FEATURES)
+    features = meta.get("features", FEATURES)
     defaults = meta.get("defaults", {})
-    accuracy = meta.get("accuracy", 97.07)
+    accuracy = meta.get("accuracy", 85.19)
 
     print("\n====================================================")
     print("      XGBOOST LIVE DISEASE PREDICTION SYSTEM        ")
     print("====================================================\n")
     print(f"[INFO] Model Used: XGBoost Classifier (Trained Accuracy: {accuracy:.2f}%)")
-    print(f"[INFO] Predicting heart disease risk using the {len(features)} most important features.\n")
+    print(f"[INFO] Predicting heart disease risk using {len(features)} clinical features.\n")
 
     feature_hints = {
-        "chest pain": "0: typical angina, 1: atypical angina, 2: non-anginal pain, 3: asymptomatic",
-        "Maximum Heart Rate": "Max heart rate achieved (bpm, e.g. 71 - 202)",
-        "Major Blood Vessels": "Number of major vessels (0-3) colored by fluoroscopy",
-        "ST Depression": "ST depression induced by exercise relative to rest (e.g. 0.0 - 6.2)",
-        "Thalassemia Result": "1: normal, 2: fixed defect, 3: reversible defect",
-        "age": "Age in years (e.g. 29 - 77)",
-        "Cholesterol Level": "Serum cholesterol in mg/dl (e.g. 126 - 564)",
-        "Resting Blood Pressure": "Resting blood pressure in mm Hg (e.g. 94 - 200)"
+        "Age": "Age in years (e.g. 29 - 77)",
+        "Sex": "1: Male, 0: Female",
+        "Chest pain type": "1: typical angina, 2: atypical angina, 3: non-anginal pain, 4: asymptomatic",
+        "BP": "Resting blood pressure in mm Hg (e.g. 94 - 200)",
+        "Cholesterol": "Serum cholesterol in mg/dl (e.g. 126 - 564)",
+        "FBS over 120": "Fasting blood sugar > 120 mg/dl (1: True, 0: False)",
+        "EKG results": "0: normal, 1: ST-T wave abnormality, 2: left ventricular hypertrophy",
+        "Max HR": "Maximum heart rate achieved (bpm, e.g. 71 - 202)",
+        "Exercise angina": "Exercise induced angina (1: Yes, 0: No)",
+        "ST depression": "ST depression induced by exercise relative to rest (e.g. 0.0 - 6.2)",
+        "Slope of ST": "Slope of peak exercise ST segment (1: upsloping, 2: flat, 3: downsloping)",
+        "Number of vessels fluro": "Number of major vessels (0-3) colored by fluoroscopy",
+        "Thallium": "3: normal, 6: fixed defect, 7: reversible defect"
     }
 
     patient_data = {}
@@ -126,7 +137,7 @@ def live_prediction():
     print("====================================================")
     if is_high_risk:
         print("[!] HIGH RISK / DISEASE DETECTED")
-        print("Predicted Class: 1 (High Risk of Heart Disease)")
+        print("Predicted Class: 1 (High Risk / Heart Disease Detected)")
     else:
         print("[+] LOW RISK / NO DISEASE DETECTED")
         print("Predicted Class: 0 (Low Risk / Healthy)")
